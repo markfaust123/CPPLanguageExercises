@@ -1,0 +1,35 @@
+This repository contains all of the exercises I completed while learning the C++ programming langauge.
+
+Topics include:
+
+C++ Strings
+STL (Standard Template Library)
+Templates
+STL Containers - map, pair, and tuple
+STL Algorithms
+C++ I/O stream and stringstream
+Intro to Object Oriented Programming
+References
+Dynamic Memory Allocation
+C++ Classes
+Default Constructors
+Constructors and default arguments
+Destructors
+Function Overloading
+Operator Overloading
+Initialization and assignment
+Rule of 3
+Template functions
+Template classes
+Inheritance
+Polymorphism
+Dynamic Dispatch
+Function hiding and abstract classes
+Virtual destructors
+Object Oriented Design
+UML (Unified Modeling Language) Diagrams
+Enumerated Types
+Exceptions
+Customized Exceptions
+Iterators
+Lambdas
