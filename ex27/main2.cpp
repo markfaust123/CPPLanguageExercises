@@ -25,9 +25,9 @@ int main(void) {
   gl.add(85.0); gl.add(40.0); gl.add(42.0);
 
   double min_so_far = 100.0;
-  for (size_t i = 0; i < gl.grades.size(); i++) {
-    if (gl.grades[i] < min_so_far) {
-      min_so_far = gl.grades[i];
+  for (size_t i = 0; i < gl.get_grades().size(); i++) {
+    if (gl.get_grades()[i] < min_so_far) {
+      min_so_far = gl.get_grades()[i];
     }
   }
 

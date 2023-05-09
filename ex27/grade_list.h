@@ -74,6 +74,8 @@ class GradeList {
   // Hint: median = 50th percentile
   double median(void);
 
+  std::vector<double>& get_grades(void) {  return grades;  }
+
 
 
  private:

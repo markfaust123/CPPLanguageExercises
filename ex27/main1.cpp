@@ -17,7 +17,7 @@ int main(void) {
   gl.add(85.0); gl.add(40.0); gl.add(42.0);
 
   cout << "80th percentile was: " << gl.percentile(80.0) << endl;
-  // cout << "mean was: " << gl.mean() << endl;
-  // cout << "median was: " << gl.median() << endl;
+  cout << "mean was: " << gl.mean() << endl;
+  cout << "median was: " << gl.median() << endl;
   return 0;
 }

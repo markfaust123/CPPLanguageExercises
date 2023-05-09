@@ -34,3 +34,16 @@ double GradeList::percentile(double percentile) {
   }
   return grades[select];
 }
+
+double GradeList::mean(void) {
+  double sum = 0.0, count = 0.0;
+  for (std::vector<double>::const_iterator it = grades.cbegin(); it != grades.cend(); it++) {
+    sum += *it;
+    count++;
+  }
+  return sum / count;
+}
+
+double GradeList::median(void) {
+  return percentile(50.0);
+}
