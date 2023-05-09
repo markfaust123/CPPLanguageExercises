@@ -58,11 +58,15 @@ using std::vector;
 
 int main() {
 
-  map<string, int> counters; // We'll store each word and an associated counter
-
   //PART 3 TO DO:  fill in code here to populate counters before it gets output
 
+  std::map<std::string, int> counters; // We'll store each word and an associated counter
+  std::string word;
   
+  while (std::cin >> word) {
+    counters[word]++;
+  }
+
   
 
 
@@ -70,34 +74,38 @@ int main() {
   // Loop through the map and print contents, making use of the iterator
   // it to successively point to each entry in the map in turn.
   // We use it->first and it->second to get current key and value.
-  cout << endl;
-  for (map<string, int>::const_iterator it = counters.cbegin();
+  std::cout << std::endl;
+  for (std::map<std::string, int>::const_iterator it = counters.cbegin();
        it != counters.cend();
-       ++it) {
-    cout << "word " << it->first << " has " << it->second
-	 << " occurrences" << endl;
-
+       it++) {
+    std::cout << "word " << it->first << " has " << it->second << " occurrences" << std::endl;
   }
 
-  
 
 
   //PART 4 TO DO:  fill in code here to populate words_by_freq
   //Note that this map has int keys and values which are vectors of strings.
-  map<int, vector<string> > words_by_freq;
-
-
-
-
-
-
-
-
+  std::map<int, std::vector<std::string>> words_by_freq;
+  for (std::map<std::string, int>::const_iterator it = counters.cbegin(); 
+    it != counters.cend(); 
+    it++) {
+      words_by_freq[it->second].push_back(it->first);
+  }
+  std::cout << std::endl;
   
   // PART 5 TO DO: write code here to output the contents of the
   // words_by_freq map, arranged by frequency.
 
-
+  for (std::map<int, std::vector<std::string>>::const_iterator it = words_by_freq.cbegin();
+    it != words_by_freq.cend();
+    it++) {
+      std::cout << "Frequency: " << it->first << std::endl;
+      for (std::vector<std::string>::const_iterator it2 = (it->second).cbegin(); 
+      it2 != (it->second).cend();
+      it2++ ) {
+        std::cout << *it2 << std::endl;
+      }
+  }
   
 
   
