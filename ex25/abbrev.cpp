@@ -52,9 +52,11 @@ int main(int argc, char **argv) {
   std::ofstream out(argv[2]);
   if (!in.is_open()) {
     std::cerr << "Error opening infile: " << argv[1] << std::endl;
+    return 1;
   }
   if (!out.is_open()) {
     std::cerr << "Error opening outfile: " << argv[2] << std::endl;
+    return 1;
   }
 
   std::string line;
