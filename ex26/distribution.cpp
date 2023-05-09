@@ -5,6 +5,7 @@
 #include <chrono>
 #include <cmath>
 
+void make_cumulative(std::vector<double>& dist);
 std::vector< double >::const_iterator naive_find_last_iterator( std::vector< double >::const_iterator begin , std::vector< double >::const_iterator end , double v );
 std::vector< double >::const_iterator  fast_find_last_iterator( std::vector< double >::const_iterator begin , std::vector< double >::const_iterator end , double v );
 
@@ -32,7 +33,7 @@ int main( void )
   // Set the values of the distribution
   distribution.resize( bin_num , 0 );
   std::binomial_distribution< int > binomial_distribution( bin_num-1 , 0.5 );
-  for( int i=0 ; i<sample_num ; i++ ) distribution[ binomial_distribution( generator ) ] += 1./sample_num;
+  for( int i=0 ; i<int(sample_num) ; i++ ) distribution[ binomial_distribution( generator ) ] += 1./sample_num;
 
   // Turn the distribution of probabilities into a cumulative distribution
   make_cumulative( distribution );
@@ -90,17 +91,38 @@ int main( void )
 }
 
 // PART 2 TODO: Define a function that converts a std::vector< double > from a probability density function to a cumulative distribution function.
+void make_cumulative(std::vector<double>& dist) {
+  for (int i = 1; i < int(dist.size()); i++) {
+    dist[i] += dist[i - 1];
+  }
+}
 
 std::vector< double >::const_iterator naive_find_last_iterator( std::vector< double >::const_iterator begin , std::vector< double >::const_iterator end , double v )
 {
   // PART 4 TODO: Implement the function returning the iterator with the property that value of v is between the indexed entry and the next one
-  return end;
+  std::vector<double>::const_iterator best = begin, it = begin;
+  while (it != end && *it <= v) {
+    best = it;
+    ++it;
+  }
+  return best;
 }
 
 std::vector< double >::const_iterator fast_find_last_iterator( std::vector< double >::const_iterator begin , std::vector< double >::const_iterator end , double v )
 {
   // PART 5 TODO: Implement the function returning the iterator with the property that value of v is between the indexed entry and the next one
-  return end;
+  size_t range = end - begin;
+  if (range == 1) {
+    return begin;
+  }
+  std::vector< double >::const_iterator mid = begin + (range / 2);
+  if (*mid > v) {
+    return fast_find_last_iterator(begin, mid, v);
+  } else if (*mid < v) {
+    return fast_find_last_iterator(mid, end, v);
+  } else {
+    return mid;
+  }
 }
 
 
