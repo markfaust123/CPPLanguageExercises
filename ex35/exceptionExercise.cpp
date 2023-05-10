@@ -48,13 +48,13 @@ int main(int argc, char **argv) {
   std::vector<int> numbers;
   try {
     numbers = readFile(argv[1]);
-  } catch (std::out_of_range ex) {
+  } catch (std::out_of_range &ex) {
     std::cerr << "Error: input size out of vector range" << std::endl;
     return 1;
-  } catch (std::ios_base::failure e) {
+  } catch (std::ios_base::failure &e) {
     std::cout << e.what();
     return 1;
-  } catch (std::invalid_argument e) {
+  } catch (std::invalid_argument &e) {
     std::cout << e.what();
     return 1;
   }
