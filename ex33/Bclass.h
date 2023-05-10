@@ -16,7 +16,15 @@ public:
      d = 17; 
   }
   void setb(int val) { b = val; }
+  virtual std::string toString() const override;
+  virtual int fun() const override { return geta() * b * d; }
 };
+
+std::string B::toString() const {
+  std::stringstream ss;
+  ss << "[Bclass: a = " << geta() << ", b = " << b << ", d = " << d << ", size = " << sizeof(*this) << "]" << std::endl;
+  return ss.str();
+}
 
 
 #endif
