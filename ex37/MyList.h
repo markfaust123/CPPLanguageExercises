@@ -4,100 +4,70 @@
 #include <iostream>
 #include "MyNode.h"
 
-// A linked list template
-
-template<typename T>
+template <typename T> 
 class MyList {
+    private:
 
- private:
-  MyNode<T>* head; // pointer to first node in linked list
+        MyNode<T>* head;
 
- public:
+    public:
 
-  // *** DON'T CHANGE THIS FILE ABOVE THIS POINT ***
+        class iterator {
+            private: 
+                MyNode<T>* ptr;
 
+            public:
 
-  /*-------------------------------------------------*/
+                iterator(MyNode<T>* ptr) : ptr(ptr) {}
 
-  // TODO Part 3a:
-  // For the nested iterator class `iterator`, you will have to
-  // provide implementations for the member functions commented out.
-  // You will also have to un-comment and implement the begin()
-  // and end() MyList class member functions below.
-  class iterator {
-    MyNode<T>* ptr;
+                iterator& operator++() { ptr = ptr->next; return *this; }
+                bool operator!=(const iterator& it) const { return ptr != it.ptr; }
+                T& operator*() { return ptr->data; }
 
-  public:
-  
-  iterator(MyNode<T>* initial) : ptr(initial) { }
+        };
 
-    // iterator& operator++() { ... }
+        iterator begin() { return iterator(head);     }
+        iterator end()   { return iterator(nullptr);  }
 
-    // bool operator!=(const iterator& o) const { ... }
+        class const_iterator {
+            private: 
+                MyNode<T>* ptr;
 
-    // T& operator*() { ... }
+            public:
 
-  };
+                const_iterator(MyNode<T>* ptr) : ptr(ptr) {}
 
-  // iterator begin() { ... }
+                const_iterator& operator++() { ptr = ptr->next; return *this; }
+                bool operator!=(const const_iterator& rhs) const { return ptr != rhs.ptr; }
+                const T& operator*() const { return ptr->data; }
 
-  // iterator end() { ... }
-    
+        };
 
-  /*-------------------------------------------------*/
+        const_iterator cbegin() const { return const_iterator(head); }
+        const_iterator cend()   const { return const_iterator(nullptr); }
 
-
-  // TODO Part 4a:
-  // For the nested iterator class `const_iterator`, you will have
-  // to implement something like `iterator` but with additional
-  // `const` constraints to disallow modification of the elements
-  // via operator*().
-  //
-  // You will also have to un-comment and implement below the 
-  // MyList class member functions cbegin() and cend().
-  
-  // class const_iterator {
-  //     ...
-  // };
-
-  // const_iterator cbegin() const { ... }
-
-  // const_iterator cend() const { ... }
+        
 
 
-  /*-------------------------------------------------*/
+        MyList<T>() : head(nullptr) { } // create empty linked list
 
+        template <typename Itr>
+        MyList<T>(Itr begin, Itr end) : head(nullptr) {
+            for (Itr it = begin; it != end; it++) {
+                this->insertAtTail(*it);
+            }
+        }
+            
+        ~MyList<T>();                   // deallocate all nodes
 
-  // TODO Part 5:
-  // You will need to un-comment and implement the MyList
-  // constructor below which takes a begin and end iterator.
-  //
-  // Constructor for MyList that sets the linked list
-  // to contain the elements in the container with begin
-  // and end iterators provided as arguments.
-  // template<typename Itr>
-  //  MyList<T>(Itr i_begin, Itr i_end){
-  //     ...
-  // };
+        void insertAtHead(const T& d);  // create new MyNode and add at head
 
+        void insertAtTail(const T& d);  // create new MyNode and add at tail
 
-
-
-  // *** DON'T CHANGE THIS FILE BELOW THIS POINT ***
-
-  MyList<T>() : head(nullptr) { } // create empty linked list
-    
-  ~MyList<T>();                   // deallocate all nodes
-
-  void insertAtHead(const T& d);  // create new MyNode and add at head
-
-  void insertAtTail(const T& d);  // create new MyNode and add at tail
-
-  // get const pointer to head node
-  const MyNode<T>* get_head() const { return head; }
+        // get const pointer to head node
+        const MyNode<T>* get_head() const { return head; }
 
 };
-
 
 #include "MyList.inc"
 

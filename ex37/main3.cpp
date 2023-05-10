@@ -26,7 +26,7 @@ std::ostream& operator<<(std::ostream& os, const MyList<T>& list) {
     // the compiler will NOT allow you to modify the elements 
     // via the const_iterator.
 
-    // (*cit)++;
+    (*cit)++;
   }
 
   return os;
