@@ -34,6 +34,8 @@ class GradeList {
   // parameter indicating the starting length of the array. 
   // See main1.cpp for sample usage.
   GradeList(int capacity);
+  GradeList(void);
+  ~GradeList(void);
 
   // TODO: define this in grade_list.cpp. If the array is full,
   // resize it by doubling it's length. Do not use realloc!
@@ -46,8 +48,7 @@ class GradeList {
 
   // TODO: write a function (in grade_list.cpp) to clear the list
   // of all values, making the array as small as possible (capacity 1)
-  void clear();
-
+  void clear(void);
 
   // These functions are written for you, for convenience.
   int length() { return capacity; }
@@ -57,6 +58,8 @@ class GradeList {
 
   // TODO: write begin and end functions to mimic an iterator
   // using actual pointers
+  double* begin() { return grades; }
+  double* end() { return grades + count + 1; }
 
 
 private:
@@ -67,6 +70,8 @@ private:
   double * grades;  // dynamically allocated array
   int capacity;     // declared size of the array
   int count;        // number of grades in the array
+
+  void grow();
 };
 
 #endif
