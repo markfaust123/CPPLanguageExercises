@@ -13,7 +13,11 @@ public:
   B(int val = 0): b(val) { };  // automatically sets a & d to 0 w/ A()
   B(int bval, int aval, double dval): A(aval, dval), b(bval) {
      d = 17; 
-     a = 27; 
+     // a = 27; 
+     /*
+     the field "a" of class A is private, so A's subclasses do 
+     not have access to it.
+     */
   };
   ~B() { std::cout << "B obj killed" << std::endl; } ;
   void setb(int val) { b = val; };
