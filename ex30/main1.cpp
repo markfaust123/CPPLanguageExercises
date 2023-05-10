@@ -22,7 +22,7 @@ int main() {
   cout << "s size is " << s.get_size() << endl;
 
 
-  /*
+  
   //This section requires the += operator!
 
   s += 4;
@@ -31,7 +31,7 @@ int main() {
   cout << "just used operator+= 5 on s: " << s << endl;
   cout << "s += 6 results in " << (s += 6) << endl;
   cout << "size of s is " << s.get_size() << endl;
-  */
+  
 
   /*
   //This section requires the copy constructor!

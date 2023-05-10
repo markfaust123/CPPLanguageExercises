@@ -4,55 +4,34 @@
 #include <iostream>
 #include "int_node.h"
 
-/* Class to represent a mathematical set of ints (like std::set<int>,
-   but we're writing this one ourselves).  Recall that set objects may
-   never contain duplicate values, so we must avoid adding new items
-   that are equal to existing items in the set.  To facilitate checking
-   for duplicates, we store the items in a SORTED linked list of
-   int_nodes. The sort is in ascending order by < on ints.
-*/
 class int_set {
+    private:
 
- private:
+        int count;
+        int_node* head;
 
-  int_node* head;
-  int       size;
+        // helper method
+        bool has(int data);
 
- public:
+    public:
 
-  //constructor to create an empty list
-  int_set(): head(nullptr), size(0) { }
+        // constructors 
+        int_set() : count(0), head(nullptr) {}
+        int_set(int_node* head) : count(1), head(head) {}
+        int_set(const int_set& rhs);
+        ~int_set();
 
-  //copy constructor to make a "deep copy" of the set
-  int_set(const int_set& other);
+        // member functions
+        bool add(int data);
+        int get_size() { return count; }
+        void clear();
 
-  //destructor
-  ~int_set();
+        // operator overloading
+        int_set& operator+=(int data);
+        int_set& operator=(const int_set& rhs);
 
-  //report the current size of the set (i.e. number of elements in it)
-  int get_size() const { return size; }
-  
-  //remove all existing items from set
-  void clear();
-
-  //insert the given item into the set, provided it's not a duplicate
-  //return true if insertion successful, false otherwise
-  bool add(int new_value);
- 
-
-  // alternative way to call add, returning this updated int_set
-  int_set& operator+=(int new_value);
-
-
-  // overload the assignment operator to make a deep copy and return
-  // a reference to this updated int_set
-  int_set& operator=(const int_set& other);
-
-
-  //output items in set, comma-and-space-separated within curly braces
-  //E.g.  {1, 2, 3}  or {}
-  friend std::ostream& operator<<(std::ostream& os, const int_set& s);
-
+        // output contents
+        friend std::ostream& operator<<(std::ostream& os, const int_set& rhs);
 
 };
 

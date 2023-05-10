@@ -1,29 +1,23 @@
-//int_node.h
-
 #ifndef INT_NODE_H
 #define INT_NODE_H
 
 class int_node {
+    private:
+        int payload;
+        int_node* next;
+    public:
+        // constructors
+        int_node() : payload(0), next(nullptr) {}
+        int_node(int payload) : payload(payload), next(nullptr) {}
+        int_node(int payload, int_node* next) : payload(payload), next(next) {}
+        
+        // getters
+        int get_data()       { return payload; }
+        int_node* get_next() { return next;    }
 
- private:
-
-  int       data;  //the payload stored in this node
-  int_node* next;  //the pointer to node after this one
-
- public:
-
-  //constructors
-  int_node(int value): data(value), next(nullptr) { }
-  int_node(int value, int_node* ptr): data(value), next(ptr) { }
-
-  //getters
-  int get_data() const         { return data; }
-  int_node* get_next() const   { return next; }
-
-  //setters
-  void set_data(int value)     { data = value; }
-  void set_next(int_node* ptr) { next = ptr; }
-
+        // setters
+        void set_data(int data)           { payload = data; }
+        void set_next(int_node* new_next) { next = new_next; }
 };
 
 #endif

@@ -3,7 +3,7 @@ DEBUGGING_FLAGS = -g -O0
 CFLAGS = $(CONSERVATIVE_FLAGS) $(DEBUGGING_FLAGS)
 
 main1: main1.o int_set.o
-	g++ -o main1 main1.o int_set.o
+	g++ -o main1 main1.o int_set.o && ./main1
 
 main1.o: main1.cpp int_set.h
 	g++ -c main1.cpp $(CFLAGS)
